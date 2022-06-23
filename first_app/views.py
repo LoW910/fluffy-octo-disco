@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponse, HttpResponseNotFound
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 # Create your views here.
 
@@ -16,6 +16,12 @@ def news_view(request, topic):
         raise Http404("404 generic error")
         result = 'No page for that topic!'
         return HttpResponseNotFound(result) 
+
+
+def num_page_view(requst, num_page):
+    topics_list = list(articles.keys()) #['sports', 'finance', 'politics']
+    topic = topics_list[num_page]
+    return HttpResponseRedirect(topic)
 
 
 
